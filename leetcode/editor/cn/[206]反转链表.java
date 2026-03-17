@@ -58,13 +58,17 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode p = head;
-        ListNode sentinel = null;
-        while (p != null) {
-            sentinel = new ListNode(p.val, sentinel);
-            p = p.next;
+        ListNode curr = head;
+        ListNode prev = null;
+        while (curr != null) {
+
+            ListNode futr = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = futr;
+
         }
-        return sentinel;
+        return prev;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

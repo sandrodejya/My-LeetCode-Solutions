@@ -36,6 +36,7 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -48,7 +49,14 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-        
+        if (head == null || head.next == null) {
+            return head;
+        } else {
+            ListNode temp = head.next;
+            head.next = swapPairs(head.next.next);
+            temp.next = head;
+            return temp;
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
