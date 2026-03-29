@@ -55,16 +55,16 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        return isValidBSTHelper(root, Long.MAX_VALUE, Long.MIN_VALUE);
+        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
-    public boolean isValidBSTHelper (TreeNode root, long max, long min) {
+    private boolean helper(TreeNode root, long min, long max) {
         if (root == null) {
             return true;
         }
-        if (!((root.val < max) && (root.val > min))) {
+        if (root.val >= max || root.val <= min) {
             return false;
         }
-        return isValidBSTHelper(root.left, root.val, min) && isValidBSTHelper(root.right, max, root.val);
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

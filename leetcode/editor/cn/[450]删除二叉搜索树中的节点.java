@@ -78,7 +78,7 @@ class Solution {
         if (root == null) {
             return null;
         }
-        if (key == root.val) {
+        if (root.val == key) {
             if (root.left == null) {
                 return root.right;
             }
@@ -91,10 +91,10 @@ class Solution {
             }
             root.val = successor.val;
             root.left = deleteNode(root.left, successor.val);
-        } else if (key < root.val) {
-            root.left = deleteNode(root.left, key);
-        } else {
+        } else if (root.val < key) {
             root.right = deleteNode(root.right, key);
+        } else {
+            root.left = deleteNode(root.left, key);
         }
         return root;
     }

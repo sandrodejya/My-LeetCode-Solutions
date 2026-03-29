@@ -64,7 +64,7 @@ class Solution {
             return right;
         }
         if (right == null) {
-            return  left;
+            return left;
         }
         return root;
     }

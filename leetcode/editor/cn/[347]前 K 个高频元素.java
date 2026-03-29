@@ -52,24 +52,24 @@ class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();
         int[] result = new int[k];
-        int count = k, maxFreq = nums.length;
+        int maxFreq = nums.length;
+        int index = 0;
         for (int num : nums) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+            map.put(num, map.getOrDefault(num, 0) +  1);
         }
-        List<Integer>[] buckets = new ArrayList[nums.length + 1];
+        List<Integer>[] bucket = new ArrayList[nums.length + 1];
         for (int key : map.keySet()) {
-            int freq = map.get(key);
-            if (buckets[freq] == null) {
-                buckets[freq] = new ArrayList<>();
+            int val = map.get(key);
+            if (bucket[val] == null) {
+                bucket[val] = new ArrayList<>();
             }
-            buckets[freq].add(key);
+            bucket[val].add(key);
         }
-        while (count != 0) {
-            while (buckets[maxFreq] == null || buckets[maxFreq].isEmpty()) {
-                maxFreq -= 1;
+        while (index < k) {
+            while (bucket[maxFreq] == null || bucket[maxFreq].isEmpty()) {
+                maxFreq--;
             }
-            result[k - count] = buckets[maxFreq].removeLast();
-            count -= 1;
+            result[index++] = bucket[maxFreq].removeLast();
         }
         return result;
     }
